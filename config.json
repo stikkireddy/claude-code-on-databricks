@@ -1,0 +1,53 @@
+{
+    "LOG": false,
+    "LOG_LEVEL": "debug",
+    "CLAUDE_PATH": "",
+    "HOST": "127.0.0.1",
+    "PORT": 3456,
+    "APIKEY": "",
+    "API_TIMEOUT_MS": "600000",
+    "PROXY_URL": "",
+    "transformers": [
+        {
+          "path": "/Users/<username>/.claude-code-router/plugins/databricks-claude-transformers.js"
+        }
+    ],
+    "Providers": [
+      {
+        "name": "databricks",
+        "api_base_url": "https://<workspace-url>/serving-endpoints/databricks-claude-sonnet-4/invocations",
+        "api_key": "<databricks-api-key>",
+        "models": [
+          "databricks-claude-sonnet-4"
+        ],
+        "transformer": {
+          "use": [
+            "OpenAI",
+            "databricks-custom"
+          ],
+          "databricks-claude-sonnet-4": {
+            "use": [
+              "OpenAI",
+              "databricks-custom"
+            ]
+          }
+        }
+      }
+    ],
+    "StatusLine": {
+      "enabled": false,
+      "currentStyle": "default",
+      "default": {
+        "modules": []
+      },
+      "powerline": {
+        "modules": []
+      }
+    },
+    "Router": {
+      "default": "databricks,databricks-claude-sonnet-4",
+      "options": {
+        "debug": false
+      }
+    }
+  }
