@@ -91,6 +91,23 @@ The `databricks-claude-transformers.js` script is a custom transformer that adap
 - Proper handling of image URLs in multimodal requests
 - Logging for debugging purposes
 
+#### Request Transformation Process
+
+The transformer performs several important modifications to ensure compatibility between Claude Code and Databricks serving endpoints:
+
+1. **URL Construction**: Uses the provider's API base URL to target the correct Databricks serving endpoint
+
+2. **Message Content Handling**:
+   - Converts empty string content to `null` for tool calls compatibility
+   - Processes message arrays to ensure proper formatting
+   - Removes `cache_control` properties from messages
+
+3. **Image URL Processing**: Transforms image URLs to ensure proper base64 encoding format for multimodal requests
+
+4. **Request Cleanup**: Removes unnecessary properties like `parallel_tool_calls` that might cause issues with the Databricks API
+
+These transformations ensure that Claude Code requests are properly formatted for the Databricks serving endpoint, allowing seamless integration between the two systems.
+
 This transformer is referenced in the `config.json` file under the `transformers` section:
 
 ```json
@@ -145,3 +162,15 @@ After configuration, you can use Claude Code with your Databricks setup through 
 ```bash
 ccr code
 ```
+
+## API Rate Limits
+
+Databricks serving endpoints have default rate limits that may affect your usage of Claude Code. These limits include:
+
+- Requests per minute (RPM) limits
+- Maximum concurrent requests
+- Maximum tokens per request
+
+If you encounter rate limit errors or need higher throughput for your Claude Code usage, please contact your Databricks account team to discuss increasing these limits. They can help adjust your serving endpoint configuration based on your specific needs and usage patterns.
+
+Typical rate limit errors will appear as HTTP 429 responses or may be indicated in the Claude Code Router logs when debugging is enabled.
