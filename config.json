@@ -9,7 +9,10 @@
     "PROXY_URL": "",
     "transformers": [
         {
-          "path": "/Users/<username>/.claude-code-router/plugins/databricks-claude-transformers.js"
+          "path": "/Users/<username>/.claude-code-router/plugins/databricks-claude-transformers.js",
+          "options": {
+            "debug": false
+          }
         }
     ],
     "Providers": [
@@ -45,9 +48,6 @@
       }
     },
     "Router": {
-      "default": "databricks,databricks-claude-sonnet-4",
-      "options": {
-        "debug": false
-      }
+      "default": "databricks,databricks-claude-sonnet-4"
     }
   }

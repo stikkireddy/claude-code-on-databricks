@@ -81,7 +81,7 @@ Replace the following placeholders:
 You can also configure debugging options in this file:
 - `LOG`: Set to `true` to enable logging
 - `LOG_LEVEL`: Set to `debug` for detailed logs
-- `Router.options.debug`: Set to `true` for router debugging
+- `transformers[].options.debug`: Set to `true` for transformer-specific debugging
 
 ### About the Transformer Script
 
@@ -121,11 +121,17 @@ nano ~/.claude-code-router/config.json
     "LOG": true,
     "LOG_LEVEL": "debug",
     ...
+    "transformers": [
+        {
+          "path": "/Users/<username>/.claude-code-router/plugins/databricks-claude-transformers.js",
+          "options": {
+            "debug": true
+          }
+        }
+    ],
+    ...
     "Router": {
-      "default": "databricks,databricks-claude-sonnet-4",
-      "options": {
-        "debug": true
-      }
+      "default": "databricks,databricks-claude-sonnet-4"
     }
 }
 ```
