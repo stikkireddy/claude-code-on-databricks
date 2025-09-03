@@ -9,9 +9,15 @@ Running Claude Code natively on Databricks using Claude Code Router
   - [Install Claude Code](#install-claude-code)
   - [Update Claude Code](#update-claude-code)
   - [Install Claude Code Router](#install-claude-code-router)
+  - [Install OpenCode](#install-opencode-alternative-interface)
 - [Configuration](#configuration)
+  - [Using Different Anthropic Models](#using-different-anthropic-models)
 - [Debugging](#debugging)
 - [Usage](#usage)
+  - [Using Claude Code CLI](#using-claude-code-cli)
+  - [Using OpenCode](#using-opencode)
+- [License](#license)
+- [API Rate Limits](#api-rate-limits)
 
 ## Prerequisites
 
