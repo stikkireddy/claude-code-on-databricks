@@ -49,10 +49,9 @@ class DatabricksTransformer {
       // remove messages which have empty text block
       // Remove messages with empty content and strip cache_control from all messages
       request.messages = request.messages
-        // .filter(message => message.content !== '')
-        // .filter(message => message.role !== 'tool')
         .map(message => {
-        
+    
+          // FIXED: Handle empty content for tool calls the message content should be null and not empty string
           if (message.content === "")  {
             message.content = null;
           }
