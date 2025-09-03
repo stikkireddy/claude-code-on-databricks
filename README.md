@@ -53,6 +53,25 @@ npm install -g @musistudio/claude-code-router
 
 Claude Code Router is an open-source project available on GitHub under the MIT license: [https://github.com/musistudio/claude-code-router](https://github.com/musistudio/claude-code-router)
 
+### Install OpenCode (Alternative Interface)
+
+OpenCode is an alternative interface for Claude Code that provides a VSCode-like experience:
+
+```bash
+npm install -g opencode-ai@latest
+```
+
+OpenCode is an open-source project available on GitHub under the MIT license: [https://github.com/sst/opencode](https://github.com/sst/opencode)
+
+After installation, copy the OpenCode configuration file to the appropriate directory:
+
+```bash
+mkdir -p ~/.config/opencode
+cp opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+```
+
+Note: Template configuration files are available in the `opencode/` folder of this repository.
+
 ## Configuration
 
 1. Create the plugins directory for Claude Code Router:
@@ -67,8 +86,10 @@ cp databricks-claude-transformers.js ~/.claude-code-router/plugins/
 
 3. Copy the configuration file to the Claude Code Router directory:
 ```bash
-cp config.json ~/.claude-code-router/config.json
+cp claude_code/config.json ~/.claude-code-router/config.json
 ```
+
+Note: Template configuration files are available in the `claude_code/` folder of this repository.
 
 4. Edit the configuration file and fill in your Databricks details:
 ```bash
@@ -84,6 +105,59 @@ You can also configure debugging options in this file:
 - `LOG`: Set to `true` to enable logging
 - `LOG_LEVEL`: Set to `debug` for detailed logs
 - `transformers[].options.debug`: Set to `true` for transformer-specific debugging
+
+### Using Different Anthropic Models
+
+You can configure both Claude Code Router and OpenCode to use different Anthropic models provided by Databricks:
+
+#### For Claude Code Router
+
+Edit the `claude_code/config.json` file to update the model name and router default:
+
+```json
+{
+  // Other configuration...
+  "Providers": [
+    {
+      "name": "databricks",
+      "models": [
+        "databricks-claude-sonnet-4"  // Change to your desired model
+      ],
+      // Other provider settings...
+    }
+  ],
+  "Router": {
+    "default": "databricks,databricks-claude-sonnet-4"  // Update both parts
+  }
+}
+```
+
+#### For OpenCode
+
+Edit the `opencode/opencode.jsonc` file to update the model name:
+
+```json
+{
+  // Other configuration...
+  "provider": {
+    "anthropic": {
+      // Other settings...
+      "models": {
+        "databricks-claude-3-7-sonnet": {  // Change key and name to your desired model
+          "name": "databricks-claude-3-7-sonnet"  // e.g., databricks-claude-opus or databricks-claude-sonnet-4
+        }
+      }
+    }
+  }
+}
+```
+
+Common Databricks model names include:
+- `databricks-claude-sonnet-4`
+- `databricks-claude-3-7-sonnet`
+- `databricks-claude-opus`
+
+Ensure that your Databricks serving endpoint is configured with the corresponding model.
 
 ### About the Transformer Script
 
@@ -159,11 +233,33 @@ Logs will be displayed in the terminal where you run the Claude Code Router. For
 
 ## Usage
 
-After configuration, you can use Claude Code with your Databricks setup through the router:
+### Using Claude Code CLI
+
+After configuration, you can use Claude Code CLI with your Databricks setup through the router:
 
 ```bash
 ccr code
 ```
+
+### Using OpenCode
+
+To use OpenCode with Claude Code Router:
+
+1. Start Claude Code Router in one terminal:
+
+```bash
+ccr start
+```
+
+2. In a separate terminal, start OpenCode:
+
+```bash
+opencode
+```
+
+3. Once OpenCode is running, use the `/models` command in the OpenCode interface and select the appropriate `databricks-*` model from the list.
+
+This setup allows you to use the VSCode-like OpenCode interface while routing requests through Claude Code Router to your Databricks serving endpoint.
 
 ## License
 
