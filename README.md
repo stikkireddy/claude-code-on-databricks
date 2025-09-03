@@ -51,6 +51,8 @@ npm update -g @anthropics/claude-code
 npm install -g @musistudio/claude-code-router
 ```
 
+Claude Code Router is an open-source project available on GitHub under the MIT license: [https://github.com/musistudio/claude-code-router](https://github.com/musistudio/claude-code-router)
+
 ## Configuration
 
 1. Create the plugins directory for Claude Code Router:
@@ -162,6 +164,10 @@ After configuration, you can use Claude Code with your Databricks setup through 
 ```bash
 ccr code
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## API Rate Limits
 
