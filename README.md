@@ -43,13 +43,13 @@ source ~/.zshrc  # or source ~/.bash_profile
 
 ### Install Claude Code
 ```bash
-npm install -g @anthropics/claude-code
+npm install -g @anthropic-ai/claude-code
 ```
 
 ### Update Claude Code
 To update Claude Code to the latest version:
 ```bash
-npm update -g @anthropics/claude-code
+npm update -g @anthropic-ai/claude-code
 ```
 
 ### Install Claude Code Router
